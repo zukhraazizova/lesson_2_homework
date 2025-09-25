@@ -1,10 +1,10 @@
-from adress import Adress
+from adress import Address
 from mailing import Mailing
 
 
-from_address = Adress(36700,"mah","lenina","3","27")
-to_address = Adress(36567,"mos","push","6","77")
-mailing = Mailing (from_address , to_address, "100rb","45")
+from_address = Address(36700,"mah","lenina","3","27")
+to_address = Address(36567,"mos","push","6","77")
+mailing = Mailing (from_address , to_address, "100","45")
 
 print(
     f"Отправление {mailing.track} из {mailing.from_address.index}, "
