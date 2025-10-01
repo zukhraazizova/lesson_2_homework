@@ -3,75 +3,45 @@ from string_utils import StringUtils
 
 utils = StringUtils()
 
-# ----- capitilize -----
-def test_capitilize_positive():
-    assert utils.capitilize("skypro") == "Skypro"
+# --- capitalize ---
+def test_capitalize_positive():
+    assert utils.capitalize("skypro") == "Skypro"
 
-def test_capitilize_empty():
-    assert utils.capitilize("") == ""
+def test_capitalize_empty():
+    assert utils.capitalize("") == ""
 
-def test_capitilize_uppercase():
-    assert utils.capitilize("PYTHON") == "Python"
+def test_capitalize_already_capitalized():
+    assert utils.capitalize("Skypro") == "Skypro"
 
-
-# ----- trim -----
+# --- trim ---
 def test_trim_spaces():
-    assert utils.trim("  hello  ") == "hello"
+    assert utils.trim("   skypro") == "skypro"
 
 def test_trim_no_spaces():
-    assert utils.trim("world") == "world"
+    assert utils.trim("skypro") == "skypro"
 
-def test_trim_empty():
-    assert utils.trim("") == ""
+def test_trim_only_spaces():
+    assert utils.trim("     ") == ""
 
-
-# ----- to_list -----
-def test_to_list_default():
-    assert utils.to_list("a,b,c") == ["a", "b", "c"]
-
-def test_to_list_custom_delimeter():
-    assert utils.to_list("1:2:3", ":") == ["1", "2", "3"]
-
-def test_to_list_empty():
-    assert utils.to_list("") == []
-
-
-# ----- contains -----
+# --- contains ---
 def test_contains_true():
-    assert utils.contains("hello", "e") is True
+    assert utils.contains("SkyPro", "S") is True
 
 def test_contains_false():
-    assert utils.contains("hello", "z") is False
+    assert utils.contains("SkyPro", "U") is False
 
+def test_contains_empty_string():
+    assert utils.contains("", "a") is False
 
-# ----- delete_symbol -----
-def test_delete_symbol_exist():
-    assert utils.delete_symbol("hello", "l") == "heo"
+# --- delete_symbol ---
+def test_delete_symbol_single_char():
+    assert utils.delete_symbol("SkyPro", "k") == "SyPro"
 
-def test_delete_symbol_not_exist():
-    assert utils.delete_symbol("hello", "z") == "hello"
+def test_delete_symbol_substring():
+    assert utils.delete_symbol("SkyPro", "Pro") == "Sky"
 
+def test_delete_symbol_not_found():
+    assert utils.delete_symbol("SkyPro", "x") == "SkyPro"
 
-# ----- starts_with -----
-def test_starts_with_true():
-    assert utils.starts_with("hello", "h") is True
-
-def test_starts_with_false():
-    assert utils.starts_with("hello", "a") is False
-
-
-# ----- end_with -----
-def test_end_with_true():
-    assert utils.end_with("hello", "o") is True
-
-def test_end_with_false():
-    assert utils.end_with("hello", "x") is False
-
-
-# ----- is_empty -----
-def test_is_empty_true():
-    assert utils.is_empty("") is True
-    assert utils.is_empty("   ") is True
-
-def test_is_empty_false():
-    assert utils.is_empty("not empty") is False
+def test_delete_symbol_empty_string():
+    assert utils.delete_symbol("", "x") == ""

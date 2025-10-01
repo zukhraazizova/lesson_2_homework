@@ -1,34 +1,38 @@
 class StringUtils:
-    # Делает первую букву заглавной
-    def capitilize(self, string: str) -> str:
+    """
+    Класс с полезными утилитами для обработки и анализа строк
+    """
+
+    def capitalize(self, string: str) -> str:
+        """
+        Делает первую букву заглавной
+        """
         return string.capitalize()
 
-    # Убирает пробелы по краям
     def trim(self, string: str) -> str:
-        return string.strip()
+        """
+        Убирает пробелы в начале строки
+        """
+        whitespace = " "
+        while string.startswith(whitespace):
+            string = string.removeprefix(whitespace)
+        return string
 
-    # Делает список из строки по разделителю
-    def to_list(self, string: str, delimeter: str = ",") -> list:
-        if string == "":
-            return []
-        return string.split(delimeter)
-
-    # Проверяет, пустая ли строка
     def contains(self, string: str, symbol: str) -> bool:
-        return symbol in string
+        """
+        Проверяет, есть ли символ в строке
+        """
+        res = False
+        try:
+            res = string.index(symbol) > -1
+        except ValueError:
+            pass
+        return res
 
-    # Удаляет из строки все указанные символы
     def delete_symbol(self, string: str, symbol: str) -> str:
-        return string.replace(symbol, "")
-
-    # Проверяет, начинается ли строка с символа
-    def starts_with(self, string: str, symbol: str) -> bool:
-        return string.startswith(symbol)
-
-    # Проверяет, заканчивается ли строка символом
-    def end_with(self, string: str, symbol: str) -> bool:
-        return string.endswith(symbol)
-
-    # Проверяет, пустая ли строка
-    def is_empty(self, string: str) -> bool:
-        return string == "" or string.isspace()
+        """
+        Удаляет символ или подстроку из строки
+        """
+        if self.contains(string, symbol):
+            string = string.replace(symbol, "")
+        return string
